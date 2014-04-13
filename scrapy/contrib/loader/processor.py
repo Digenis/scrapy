@@ -49,11 +49,32 @@ class Compose(object):
         return value
 
 
+class Filter(object):
+
+    def __init__(self, function=lambda v: v is not None and v != ''):
+        self.function = function
+
+    def __call__(self, values):
+        return tuple(filter(self.function, values))
+
+
+class Slice(object):
+
+    def __init__(self, begin=None, end=None):
+        self.begin, self.end = begin, end
+
+    def __call__(self, values):
+        return values[self.begin:self.end]
+
+
 class TakeFirst(object):
+
+    def __init__(self, function=lambda v: v is not None and v != ''):
+        self.function = bool if function is None else function
 
     def __call__(self, values):
         for value in values:
-            if value is not None and value != '':
+            if self.function(value):
                 return value
 
 
