@@ -50,6 +50,14 @@ class Compose(object):
 
 
 class Filter(object):
+    '''
+    >>> Filter()(['A', 0, '', 0.0, None, -1])
+    ('A', 0, 0.0, -1)
+    >>> Filter(None)(['A', 0, '', 0.00, None, -1])
+    ('A', -1)
+    >>> Filter(lambda s: len(str(s)) > 1)(['A', 0, '', 0.00, None, -1])
+    (0.0, None, -1)
+    '''
 
     def __init__(self, function=lambda v: v is not None and v != ''):
         self.function = function
@@ -59,6 +67,12 @@ class Filter(object):
 
 
 class Slice(object):
+    '''
+    >>> Slice()([2, 3, 5, 7])
+    [2, 3, 5, 7]
+    >>> Slice(None, 3)([2, 3, 5, 7])
+    [2, 3, 5]
+    '''
 
     def __init__(self, begin=None, end=None):
         self.begin, self.end = begin, end
@@ -68,6 +82,14 @@ class Slice(object):
 
 
 class TakeFirst(object):
+    '''
+    >>> [TakeFirst()(c) for c in ((0,'A'), ('', 0), (None, 'A'))]
+    [0, 0, 'A']
+    >>> [TakeFirst(None)(c) for c in ((0,'A'), ('', 0), (None, 'A'))]
+    ['A', None, 'A']
+    >>> [TakeFirst(lambda s: len(str(s)) > 1)(c) for c in ((0,'A'), ('', 0), (None, 'A'))]
+    [None, None, None]
+    '''
 
     def __init__(self, function=lambda v: v is not None and v != ''):
         self.function = bool if function is None else function
