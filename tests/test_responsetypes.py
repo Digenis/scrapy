@@ -34,6 +34,7 @@ class ResponseTypesTest(unittest.TestCase):
             ('application/xhtml+xml; charset=UTF-8', HtmlResponse),
             ('application/vnd.wap.xhtml+xml; charset=utf-8', HtmlResponse),
             ('application/xml; charset=UTF-8', XmlResponse),
+            ('application/vnd.sdmx.structure+xml; version=2.1', XmlResponse),
             ('application/octet-stream', Response),
         ]
         for source, cls in mappings:
