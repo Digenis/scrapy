@@ -8,7 +8,7 @@ import lxml.etree as etree
 
 from scrapy.link import Link
 from scrapy.utils.misc import arg_to_iter, rel_has_nofollow
-from scrapy.utils.python import unique as unique_list, to_native_str
+from scrapy.utils.python import unique as unique_list, to_unicode
 from scrapy.linkextractors import FilteringLinkExtractor
 from scrapy.utils.response import get_base_url
 
@@ -56,9 +56,9 @@ class LxmlParserLinkExtractor(object):
                 url = self.process_attr(attr_val)
                 if url is None:
                     continue
-            url = to_native_str(url, encoding=response_encoding)
+            url = to_unicode(url, encoding=response_encoding)
             # to fix relative links after process_value
-            url = urljoin(response_url, url)
+            url = urljoin(to_unicode(response_url, encoding='ascii'), url)
             link = Link(url, _collect_string_content(el) or u'',
                         nofollow=rel_has_nofollow(el.get('rel')))
             links.append(link)

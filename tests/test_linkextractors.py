@@ -427,7 +427,6 @@ class LxmlLinkExtractorTestCase(Base.LinkExtractorTestCase):
             Link(url='http://example.org/item3.html', text=u'Item 3', nofollow=False),
         ])
 
-    @pytest.mark.xfail
     def test_restrict_xpaths_with_html_entities(self):
         super(LxmlLinkExtractorTestCase, self).test_restrict_xpaths_with_html_entities()
 
