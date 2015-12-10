@@ -293,6 +293,19 @@ class AddHttpIfNoScheme(unittest.TestCase):
         self.assertEqual(add_http_if_no_scheme('ftp://www.example.com'),
                                                'ftp://www.example.com')
 
+    def test_preserve_file(self):
+        self.assertEqual(add_http_if_no_scheme('file://localhost/var/www/index.htm'),
+                                               'file://localhost/var/www/index.htm')
+        self.assertEqual(add_http_if_no_scheme('file:///var/www/index.htm'),
+                                               'file:///var/www/index.htm')
+
+        self.assertEqual(add_http_if_no_scheme('file://localhost/c:/windows/'),
+                                               'file://localhost/c:/windows/')
+        self.assertEqual(add_http_if_no_scheme('file://localhost/c|/windows/'),
+                                               'file://localhost/c|/windows/')
+        self.assertEqual(add_http_if_no_scheme('file:///c:/windows/'),
+                                               'file:///c:/windows/')
+
 
 if __name__ == "__main__":
     unittest.main()
