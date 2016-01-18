@@ -360,25 +360,14 @@ orders. For more info see :ref:`topics-downloader-middleware-setting`.
 DOWNLOADER_MIDDLEWARES_BASE
 ---------------------------
 
-Default::
+Default:
 
-    {
-        'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': 100,
-        'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware': 300,
-        'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware': 350,
-        'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': 400,
-        'scrapy.downloadermiddlewares.retry.RetryMiddleware': 500,
-        'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware': 550,
-        'scrapy.downloadermiddlewares.ajaxcrawl.AjaxCrawlMiddleware': 560,
-        'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware': 580,
-        'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 590,
-        'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': 600,
-        'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 700,
-        'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 750,
-        'scrapy.downloadermiddlewares.chunked.ChunkedTransferMiddleware': 830,
-        'scrapy.downloadermiddlewares.stats.DownloaderStats': 850,
-        'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware': 900,
-    }
+.. literalinclude:: ../../scrapy/settings/default_settings.py
+   :start-after: DOWNLOADER_MIDDLEWARES_BASE = {
+   :prepend: {
+   :end-before: }
+   :append: }
+
 
 A dict containing the downloader middlewares enabled by default in Scrapy. Low
 orders are closer to the engine, high orders are closer to the downloader. You
@@ -435,15 +424,13 @@ See :setting:`DOWNLOAD_HANDLERS_BASE` for example format.
 DOWNLOAD_HANDLERS_BASE
 ----------------------
 
-Default::
+Default:
 
-    {
-        'file': 'scrapy.core.downloader.handlers.file.FileDownloadHandler',
-        'http': 'scrapy.core.downloader.handlers.http.HTTPDownloadHandler',
-        'https': 'scrapy.core.downloader.handlers.http.HTTPDownloadHandler',
-        's3': 'scrapy.core.downloader.handlers.s3.S3DownloadHandler',
-        'ftp': 'scrapy.core.downloader.handlers.ftp.FTPDownloadHandler',
-    }
+.. literalinclude:: ../../scrapy/settings/default_settings.py
+   :start-after: DOWNLOAD_HANDLERS_BASE = {
+   :prepend: {
+   :end-before: }
+   :append: }
 
 
 A dict containing the request download handlers enabled by default in Scrapy.
@@ -564,19 +551,14 @@ A dict containing the extensions enabled in your project, and their orders.
 EXTENSIONS_BASE
 ---------------
 
-Default::
+Default:
 
-    {
-        'scrapy.extensions.corestats.CoreStats': 0,
-        'scrapy.extensions.telnet.TelnetConsole': 0,
-        'scrapy.extensions.memusage.MemoryUsage': 0,
-        'scrapy.extensions.memdebug.MemoryDebugger': 0,
-        'scrapy.extensions.closespider.CloseSpider': 0,
-        'scrapy.extensions.feedexport.FeedExporter': 0,
-        'scrapy.extensions.logstats.LogStats': 0,
-        'scrapy.extensions.spiderstate.SpiderState': 0,
-        'scrapy.extensions.throttle.AutoThrottle': 0,
-    }
+.. literalinclude:: ../../scrapy/settings/default_settings.py
+   :start-after: EXTENSIONS_BASE = {
+   :prepend: {
+   :end-before: }
+   :append: }
+
 
 A dict containing the extensions available by default in Scrapy, and their
 orders. This setting contains all stable built-in extensions. Keep in mind that
@@ -913,13 +895,14 @@ testing spiders. For more info see :ref:`topics-contracts`.
 SPIDER_CONTRACTS_BASE
 ---------------------
 
-Default::
+Default:
 
-    {
-        'scrapy.contracts.default.UrlContract' : 1,
-        'scrapy.contracts.default.ReturnsContract': 2,
-        'scrapy.contracts.default.ScrapesContract': 3,
-    }
+.. literalinclude:: ../../scrapy/settings/default_settings.py
+   :start-after: SPIDER_CONTRACTS_BASE = {
+   :prepend: {
+   :end-before: }
+   :append: }
+
 
 A dict containing the scrapy contracts enabled by default in Scrapy. You should
 never modify this setting in your project, modify :setting:`SPIDER_CONTRACTS`
@@ -958,15 +941,14 @@ orders. For more info see :ref:`topics-spider-middleware-setting`.
 SPIDER_MIDDLEWARES_BASE
 -----------------------
 
-Default::
+Default:
 
-    {
-        'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware': 50,
-        'scrapy.spidermiddlewares.offsite.OffsiteMiddleware': 500,
-        'scrapy.spidermiddlewares.referer.RefererMiddleware': 700,
-        'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware': 800,
-        'scrapy.spidermiddlewares.depth.DepthMiddleware': 900,
-    }
+.. literalinclude:: ../../scrapy/settings/default_settings.py
+   :start-after: SPIDER_MIDDLEWARES_BASE = {
+   :prepend: {
+   :end-before: }
+   :append: }
+
 
 A dict containing the spider middlewares enabled by default in Scrapy, and
 their orders. Low orders are closer to the engine, high orders are closer to
