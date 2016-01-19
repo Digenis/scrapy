@@ -97,6 +97,12 @@ class ScrapyCommand(object):
 
         if opts.pdb:
             failure.startDebugMode()
+            import pdb, logging
+            _handleError = logging.Handler.handleError
+            def handleError(self, record):
+                pdb.post_mortem()
+                return _handleError(self, record)
+            logging.Handler.handleError = handleError
 
     def run(self, args, opts):
         """
