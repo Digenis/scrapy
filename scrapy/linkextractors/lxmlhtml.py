@@ -16,8 +16,6 @@ from scrapy.utils.response import get_base_url
 # from lxml/src/lxml/html/__init__.py
 XHTML_NAMESPACE = "http://www.w3.org/1999/xhtml"
 
-_collect_string_content = etree.XPath("string()")
-
 
 def _nons(tag):
     if isinstance(tag, six.string_types):
@@ -27,6 +25,8 @@ def _nons(tag):
 
 
 class LxmlParserLinkExtractor(object):
+    _collect_string_content = staticmethod(etree.XPath("string()"))
+
     def __init__(self, tag="a", attr="href", process=None, unique=False):
         self.scan_tag = tag if callable(tag) else lambda t: t == tag
         self.scan_attr = attr if callable(attr) else lambda a: a == attr
